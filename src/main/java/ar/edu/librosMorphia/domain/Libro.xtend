@@ -32,6 +32,9 @@ class Libro extends Entity {
 	}
 	
 	def getEstaDisponible() {
+		if (!activo) {
+			return false
+		}
 		if (prestamos.isEmpty) {
 			return true
 		}
