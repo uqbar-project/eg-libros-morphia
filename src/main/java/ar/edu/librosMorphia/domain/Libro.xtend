@@ -18,20 +18,14 @@ class Libro extends Entity {
 		prestamos = newArrayList
 	}
 	
-	def Prestamo prestar(Usuario _usuario) {
-		val nuevoPrestamo = new Prestamo => [
-					usuario = _usuario
-					libro = this
-				]
-		prestamos.add(nuevoPrestamo)
-		nuevoPrestamo
-	}
-	
 	def void devolver() {
 		ultimoPrestamo?.devolver
 	}
 	
 	def getEstaDisponible() {
+		if (!activo) {
+			return false
+		}
 		if (prestamos.isEmpty) {
 			return true
 		}
@@ -40,10 +34,6 @@ class Libro extends Entity {
 	
 	def getUltimoPrestamo() {
 		prestamos.last
-	}
-	
-	def quienLoTiene() {
-		ultimoPrestamo?.usuario
 	}
 	
 	def estaPrestado() {

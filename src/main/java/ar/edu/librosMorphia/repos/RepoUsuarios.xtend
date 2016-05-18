@@ -4,7 +4,7 @@ import ar.edu.librosMorphia.domain.Usuario
 import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedRepo
 
-class RepoUsuarios extends CollectionBasedRepo<Usuario> implements AbstractRepository<Usuario> {
+class RepoUsuarios extends AbstractRepository<Usuario> {
 	
 	override protected getCriterio(Usuario example) {
 		return [ Usuario usuario | example.nombre.equalsIgnoreCase(usuario.nombre)] as Predicate<Usuario>

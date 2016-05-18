@@ -6,7 +6,7 @@ import org.apache.commons.collections15.Predicate
 import org.apache.commons.collections15.functors.AndPredicate
 import org.uqbar.commons.model.CollectionBasedRepo
 
-class RepoLibros extends CollectionBasedRepo<Libro> implements AbstractRepository<Libro> {
+class RepoLibros extends AbstractRepository<Libro> {
 
 	override protected getCriterio(Libro example) {
 		var result = criterioPendientes
@@ -22,10 +22,6 @@ class RepoLibros extends CollectionBasedRepo<Libro> implements AbstractRepositor
 
 	def getCriterioPorTitulo(String titulo) {
 		[Libro libro| libro.titulo.contains(titulo)] as Predicate<Libro>
-	}
-	
-	def getCriterioPorUsuario(Usuario usuario) {
-		[Libro libro| libro.quienLoTiene.equals(usuario) ] as Predicate<Libro>
 	}
 	
 	override createExample() {

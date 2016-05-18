@@ -6,7 +6,7 @@ import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedRepo
 import ar.edu.librosMorphia.domain.Usuario
 
-class RepoPrestamos extends CollectionBasedRepo<Prestamo> implements AbstractRepository<Prestamo> {
+class RepoPrestamos extends AbstractRepository<Prestamo> {
 	
 	override protected getCriterio(Prestamo example) {
 		var result = criterioPendientes
