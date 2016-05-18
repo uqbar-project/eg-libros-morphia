@@ -1,41 +1,38 @@
 package ar.edu.librosMorphia.repos
 
-import ar.edu.librosMorphia.domain.Libro
 import ar.edu.librosMorphia.domain.Prestamo
-import org.apache.commons.collections15.Predicate
-import org.uqbar.commons.model.CollectionBasedRepo
-import ar.edu.librosMorphia.domain.Usuario
 
-class RepoPrestamos extends CollectionBasedRepo<Prestamo> implements AbstractRepository<Prestamo> {
+class RepoPrestamos extends AbstractRepository<Prestamo> {
 	
-	override protected getCriterio(Prestamo example) {
-		var result = criterioPendientes
-		result
-	}
-
-	def getCriterioPendientes() {
-		[Prestamo prestamo | prestamo.estaPendiente ] as Predicate<Prestamo>
-	}
-
-	override createExample() {
-		new Prestamo
-	}
-
 	override getEntityType() {
 		typeof(Prestamo)
 	}
-
+	
 	def createWhenNew(Prestamo prestamo) {
-		if (search(prestamo.libro, prestamo.usuario).isEmpty) {
+		if (searchByExample(prestamo).isEmpty) {
 			this.create(prestamo)
 		}
 	}
 	
-	def search(Libro libro, Usuario usuario) {
-		allInstances.filter [ 
-			prestamo | (prestamo.libro.equals(libro) || libro == null)
-				&& (prestamo.usuario.equals(usuario) || usuario == null)
-		]
+	override searchByExample(Prestamo example) {
+		val query = ds.createQuery(entityType)
+		if (example.libro != null) {
+			query.field("libro.titulo").equal(example.libro.titulo)
+		}
+		if (example.usuario != null) {
+			query.field("usuario.nombre").equal(example.usuario.nombre)
+		}
+		query.field("fechaRetorno").doesNotExist
+		query.asList
 	}
 	
+	override defineUpdateOperations(Prestamo prestamo) {
+		ds.createUpdateOperations(entityType)
+			// No tiene sentido modificar el libro o el usuario
+			//.set("libro", prestamo.libro) 
+			//.set("usuario", prestamo.usuario)
+			// solo la fecha de devolucion cuando lo devuelve
+			.set("fechaDevolucion", prestamo.fechaDevolucion)
+	}
+
 }

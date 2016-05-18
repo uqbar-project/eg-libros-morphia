@@ -3,12 +3,12 @@ package ar.edu.librosMorphia.appModel
 import ar.edu.librosMorphia.domain.Libro
 import ar.edu.librosMorphia.domain.Prestamo
 import ar.edu.librosMorphia.domain.Usuario
+import ar.edu.librosMorphia.repos.AbstractRepository
 import ar.edu.librosMorphia.repos.RepoLibros
 import ar.edu.librosMorphia.repos.RepoPrestamos
 import ar.edu.librosMorphia.repos.RepoUsuarios
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.utils.ApplicationContext
 import org.uqbar.commons.utils.Observable
 
@@ -22,9 +22,9 @@ class NuevoPrestamo {
 	List<Libro> libros
 	Libro libroSeleccionado
 	
-	CollectionBasedRepo<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(typeof(RepoUsuarios))
-	CollectionBasedRepo<Libro> repoLibros = ApplicationContext.instance.getSingleton(typeof(RepoLibros))
-	CollectionBasedRepo<Prestamo> repoPrestamos = ApplicationContext.instance.getSingleton(typeof(RepoPrestamos))
+	AbstractRepository<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(typeof(RepoUsuarios))
+	AbstractRepository<Libro> repoLibros = ApplicationContext.instance.getSingleton(typeof(RepoLibros))
+	AbstractRepository<Prestamo> repoPrestamos = ApplicationContext.instance.getSingleton(typeof(RepoPrestamos))
 
 	new() {
 		usuarios = repoUsuarios.allInstances
@@ -38,6 +38,7 @@ class NuevoPrestamo {
 		]
 		// al estar en memoria solo tengo que agregarlo a la colección
 		libroSeleccionado.prestar(prestamo)
+		repoLibros.update(libroSeleccionado)
 		//
 		repoPrestamos.create(prestamo)
 	}
