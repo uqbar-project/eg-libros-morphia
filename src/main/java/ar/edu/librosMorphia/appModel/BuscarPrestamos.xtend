@@ -33,14 +33,8 @@ class BuscarPrestamos {
 		prestamoSeleccionado.devolver
 
 		// al estar en memoria esto es al cuete
-		var libroAModificar = new Libro => [
-			titulo = prestamoSeleccionado.libro.titulo
-		]
-		libroAModificar = repoLibros.getByExample(libroAModificar)
-		libroAModificar.devolver
-		repoLibros.update(libroAModificar)
+		repoLibros.update(prestamoSeleccionado.libro)
 		repoPrestamos.update(prestamoSeleccionado)
-
 		//
 		buscar()
 	}
