@@ -31,15 +31,8 @@ class BuscarPrestamos {
 	
 	def devolver() {
 		prestamoSeleccionado.devolver
-		// como estamos queriendo actualizar el libro...
-		var libroAModificar = new Libro => [
-			titulo = prestamoSeleccionado.libro.titulo
-			estado = Libro.PRESTADO // lo necesito poner en estado prestado para buscarlo
-		]
-		libroAModificar = repoLibros.getByExample(libroAModificar)
 		// le cambio el estado
-		libroAModificar.devolver
-		repoLibros.update(libroAModificar)
+		repoLibros.update(prestamoSeleccionado.libro)
 		repoPrestamos.update(prestamoSeleccionado)
 		//
 		buscar()

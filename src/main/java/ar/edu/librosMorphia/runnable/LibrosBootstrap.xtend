@@ -24,66 +24,60 @@ class LibrosBootstrap implements Bootstrap {
 			return
 		}
 		
-		val medina = new Usuario => [
+		var medina = new Usuario => [
 			nombre = "Medina"
 			password = "Piquito"
 		]
-		val santos = new Usuario => [
+		var santos = new Usuario => [
 			nombre = "Santos"
 			password = "Milazzo"
 		]
 
-		val elAleph = new Libro => [
+		var elAleph = new Libro => [
 			titulo = "El Aleph"
 			autor = "Jorge Luis Borges"
 		]
-		val noHabraMasPenas = new Libro => [
+		var noHabraMasPenas = new Libro => [
 			titulo = "No habrá más penas ni olvido"
 			autor = "Osvaldo Soriano"
 		]
-		val novelaPeron = new Libro => [
+		var novelaPeron = new Libro => [
 			titulo = "La novela de Perón"
 			autor = "Tomás Eloy Martínez"
 		]
 
-		val elAlephASantos = new Prestamo => [
-			libro = elAleph
-			usuario = santos
-		]
-		elAleph.prestar(elAlephASantos)
-		val noHabraAMedina = new Prestamo => [
-			libro = noHabraMasPenas
-			usuario = medina
-		]
-		noHabraMasPenas.prestar(noHabraAMedina)
-		
-		val novelaASantos = new Prestamo => [
-			libro = novelaPeron
-			usuario = santos
-		]
-		novelaPeron.prestar(novelaASantos)
-		
 		repoUsuarios.createIfNotExists(
 			new Usuario => [
 				nombre = "Lampone"
 				password = "Betun"
 			])
-		repoUsuarios.createIfNotExists(medina)
-		repoUsuarios.createIfNotExists(santos)
+		medina = repoUsuarios.createIfNotExists(medina)
+		santos = repoUsuarios.createIfNotExists(santos)
 
-		repoLibros.createIfNotExists(elAleph)
-		repoLibros.createIfNotExists(noHabraMasPenas)
+		elAleph = repoLibros.createIfNotExists(elAleph)
+		noHabraMasPenas = repoLibros.createIfNotExists(noHabraMasPenas)
 		repoLibros.createIfNotExists(
 			new Libro => [
 				titulo = "100 años de soledad"
 				autor = "Gabriel García Márquez"
 			])
-		repoLibros.createIfNotExists(novelaPeron)
+		novelaPeron = repoLibros.createIfNotExists(novelaPeron)
 		repoLibros.createIfNotExists(
 			new Libro => [
 				titulo = "¿Por quién doblan las campanas?"
 				autor = "Ernest Hemingway"
 			])
+
+		var elAlephASantos = new Prestamo(elAleph, santos)
+		elAleph.prestar(elAlephASantos)
+		repoLibros.update(elAleph)
+		var noHabraAMedina = new Prestamo(noHabraMasPenas, medina)
+		noHabraMasPenas.prestar(noHabraAMedina)
+		repoLibros.update(noHabraMasPenas)
+		
+		var novelaASantos = new Prestamo(novelaPeron, santos)
+		novelaPeron.prestar(novelaASantos)
+		repoLibros.update(novelaPeron)
 
 		repoPrestamos.createWhenNew(elAlephASantos)
 		repoPrestamos.createWhenNew(noHabraAMedina)

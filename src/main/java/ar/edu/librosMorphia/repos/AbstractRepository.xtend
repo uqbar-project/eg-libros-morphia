@@ -45,7 +45,6 @@ abstract class AbstractRepository<T> {
 			return entidadAModificar
 		}
 		create(t)
-		t
 	}
 
 	def void update(T t) {
@@ -55,9 +54,10 @@ abstract class AbstractRepository<T> {
 
 	abstract def UpdateOperations<T> defineUpdateOperations(T t)
 
-	def void create(T t) {
+	def T create(T t) {
 		val obj = despejarCampos(t)
 		ds.save(obj)
+		obj
 	}
 
 	def T despejarCampos(Object t) {
