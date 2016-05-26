@@ -4,6 +4,7 @@ import ar.edu.librosMorphia.domain.Libro
 import ar.edu.librosMorphia.domain.Prestamo
 import ar.edu.librosMorphia.domain.Usuario
 import com.mongodb.MongoClient
+import java.lang.reflect.Array
 import java.lang.reflect.Modifier
 import java.util.ArrayList
 import java.util.List
@@ -61,20 +62,43 @@ abstract class AbstractRepository<T> {
 	}
 
 	def T despejarCampos(Object t) {
+		if (t == null) {
+			return null
+		}
 		val fields = new ArrayList(t.class.getDeclaredFields)
-		val camposAModificar = fields.filter[!Modifier.isTransient(it.modifiers)]
+		val camposAModificar = fields.filter [
+			//!Modifier.isTransient(it.modifiers) && 
+			!Modifier.isFinal(it.modifiers) &&
+			!it.name.equalsIgnoreCase("changeSupport")
+		]
+		println("Crearemos un " + t.class)
 		val T result = t.class.newInstance as T
 		camposAModificar.forEach [
 			it.accessible = true
 			var valor = it.get(t)
-			if (valor != null) {
-				try {
-					valor.class.getDeclaredField("changeSupport")
-					valor = despejarCampos(valor)
-				} catch (NoSuchFieldException e) {
-					// todo ok, no es un valor que tenga changeSupport
+
+			if (it.getType().isArray) {
+				val length = Array.getLength(valor)
+				for (var i = 0; i < length; i++) {
+					Array.set(valor, i, despejarCampos(Array.get(valor, i)))
+		    	}
+			} else {
+				if (valor != null) {
+					try {
+						valor.class.getDeclaredField("changeSupport")
+						valor = despejarCampos(valor)
+					} catch (NoSuchFieldException e) {
+						// todo ok, no es un valor que tenga changeSupport
+						// pero por ahí es un list, set o lo que fuera
+						try {
+							valor.class.getDeclaredMethod("size")
+							valor = despejarCampos(valor)
+						} catch (NoSuchMethodException nsfe) {
+						}
+					}
 				}
 			}
+			
 			it.set(result, valor)
 		]
 		result
