@@ -67,16 +67,26 @@ abstract class AbstractRepository<T> {
 		}
 		val fields = new ArrayList(t.class.getDeclaredFields)
 		val camposAModificar = fields.filter [
-			//!Modifier.isTransient(it.modifiers) && 
+			//!Modifier.isTransient(it.modifiers) &&
+			// elementData[] de ArrayList es transient!!! 
 			!Modifier.isFinal(it.modifiers) &&
-			!it.name.equalsIgnoreCase("changeSupport")
+			!it.name.contains("changeSupport")
 		]
+		println("   Campos a persistir: " + camposAModificar)
 		println("Crearemos un " + t.class)
 		val T result = t.class.newInstance as T
+		try {
+			val fieldChangeSupport = result.class.getDeclaredField("changeSupport")
+			fieldChangeSupport.accessible = true
+			fieldChangeSupport.set(result, null)
+		} catch (NoSuchFieldException e) {
+			
+		}
 		camposAModificar.forEach [
 			it.accessible = true
 			var valor = it.get(t)
 
+			// Los arrays no tienen variables, buuu
 			if (it.getType().isArray) {
 				val length = Array.getLength(valor)
 				for (var i = 0; i < length; i++) {
@@ -89,7 +99,8 @@ abstract class AbstractRepository<T> {
 						valor = despejarCampos(valor)
 					} catch (NoSuchFieldException e) {
 						// todo ok, no es un valor que tenga changeSupport
-						// pero por ahí es un list, set o lo que fuera
+						// pero por ahi­ es un list, set o lo que fuera
+						// entonces hay que despejarle los campos
 						try {
 							valor.class.getDeclaredMethod("size")
 							valor = despejarCampos(valor)
@@ -103,7 +114,6 @@ abstract class AbstractRepository<T> {
 		]
 		result
 	}
-
 	def void delete(T t) {
 		ds.delete(t)
 	}
