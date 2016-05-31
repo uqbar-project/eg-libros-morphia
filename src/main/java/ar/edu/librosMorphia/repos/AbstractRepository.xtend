@@ -16,7 +16,8 @@ import org.mongodb.morphia.query.UpdateOperations
 abstract class AbstractRepository<T> {
 
 	static String CHANGE_SUPPORT = "changeSupport"
-
+	static String COLLECTION_METHOD = "size"
+	
 	static protected Datastore ds
 	static Morphia morphia
 
@@ -99,14 +100,14 @@ abstract class AbstractRepository<T> {
 		} 
 		
 		try {
-			valor.class.getDeclaredField("changeSupport")
+			valor.class.getDeclaredField(CHANGE_SUPPORT)
 			return despejarCampos(valor)
 		} catch (NoSuchFieldException e) {
 			// todo ok, no es un valor que tenga changeSupport
 			// pero por ahi­ es un list, set o lo que fuera
 			// entonces hay que despejarle los campos
 			try {
-				valor.class.getDeclaredMethod("size")
+				valor.class.getDeclaredMethod(COLLECTION_METHOD)
 				return despejarCampos(valor)
 			} catch (NoSuchMethodException nsfe) {
 			}
@@ -127,7 +128,7 @@ abstract class AbstractRepository<T> {
 		fields.filter [
 			//!Modifier.isTransient(it.modifiers) &&
 			// elementData[] de ArrayList es transient!!! 
-			!Modifier.isFinal(it.modifiers) && !it.name.contains("changeSupport") && !esTransient(it)
+			!Modifier.isFinal(it.modifiers) && !it.name.contains(CHANGE_SUPPORT) && !esTransient(it)
 		]
 	}
 
