@@ -14,7 +14,11 @@ La base de datos se estructura en un documento jerárquico:
 Y además tenemos dos colecciones: los libros y los usuarios
 
 ## Proyecto
-Antes de levantar la aplicación, tenés que instalar una base de datos MongoDB y levantar el server (ejecutable mongod, en Linux sudo service mongod start).
+Antes de correr los test, tenés que instalar una base de datos [MongoDB Community Edition](https://www.mongodb.com/) y levantar el server. En Windows, [levantan el servicio mongod](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/), en Linux desde una línea de comandos hacen
+
+```bash
+$ sudo service mongod start
+```
 
 El proyecto base de Xtend está usando el framework [Morphia](http://mongodb.github.io/morphia/) que es un OD/M (Object Document Mapper) contra MongoDB.
 
