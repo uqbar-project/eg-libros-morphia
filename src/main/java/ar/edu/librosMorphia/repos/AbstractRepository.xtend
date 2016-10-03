@@ -52,9 +52,8 @@ abstract class AbstractRepository<T> {
 	abstract def UpdateOperations<T> defineUpdateOperations(T t)
 
 	def T create(T t) {
-		val obj = t //despejarCampos(t)
-		ds.save(obj)
-		obj
+		ds.save(t)
+		t
 	}
 
 	def void delete(T t) {
