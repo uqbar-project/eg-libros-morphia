@@ -36,10 +36,11 @@ class NuevoPrestamo {
 			libro = libroSeleccionado
 			validar
 		]
-		// al estar en memoria solo tengo que agregarlo a la colección
 		libroSeleccionado.prestar(prestamo)
-		//
+		// al estar en memoria solo tengo que agregarlo a la colección
 		repoPrestamos.create(prestamo)
+		repoLibros.update(libroSeleccionado) // esto no es necesario si tengo un repo en memoria
+		//
 	}
 
 	def buscarLibros() {

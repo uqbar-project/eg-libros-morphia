@@ -30,10 +30,11 @@ class BuscarPrestamos {
 	}
 
 	def devolver() {
-		prestamoSeleccionado.devolver
+		val libroSeleccionado = prestamoSeleccionado.libro
+		libroSeleccionado.devolver
 
 		// al estar en memoria esto es al cuete
-		repoLibros.update(prestamoSeleccionado.libro)
+		repoLibros.update(libroSeleccionado)
 		repoPrestamos.update(prestamoSeleccionado)
 		//
 		buscar()
