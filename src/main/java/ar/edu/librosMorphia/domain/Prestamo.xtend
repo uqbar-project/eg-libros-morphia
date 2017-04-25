@@ -24,7 +24,6 @@ class Prestamo extends Entity {
 	
 	def devolver() {
 		fechaDevolucion = new Date
-		libro.devolver
 	}
 	
 	def estaPendiente() {
