@@ -1,5 +1,7 @@
 # Préstamos de libros - Persistencia en MongoDB con Morphia
 
+[![Build Status](https://travis-ci.org/uqbar-project/eg-libros-morphia.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-libros-morphia)
+
 ## Objetivo
 Testea el mapeo de una aplicación de préstamos de libros con MongoDB y Morphia. 
 Está estructurado con el formato de un [taller iterativo](https://docs.google.com/document/d/1kLAsruPYKZBNB0zi40_ORYavt_daQzEpaz2tf6pB6zw/edit#) cuyo link te dejamos. 
