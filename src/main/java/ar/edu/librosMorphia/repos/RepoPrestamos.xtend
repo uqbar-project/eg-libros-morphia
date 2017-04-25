@@ -27,12 +27,16 @@ class RepoPrestamos extends AbstractRepository<Prestamo> {
 	}
 	
 	override defineUpdateOperations(Prestamo prestamo) {
-		ds.createUpdateOperations(entityType)
+		val operations = ds.createUpdateOperations(entityType)
+		if (prestamo.fechaDevolucion == null) {
+			operations.unset("fechaRetorno")
+		} else {
 			// No tiene sentido modificar el libro o el usuario
 			//.set("libro", prestamo.libro) 
 			//.set("usuario", prestamo.usuario)
 			// solo la fecha de devolucion cuando lo devuelve
-			.set("fechaDevolucion", prestamo.fechaDevolucion)
+			operations.set("fechaRetorno", prestamo.fechaDevolucion)
+		}
 	}
 
 }
