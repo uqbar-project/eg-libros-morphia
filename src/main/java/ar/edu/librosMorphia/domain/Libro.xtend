@@ -3,7 +3,7 @@ package ar.edu.librosMorphia.domain
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
-import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.annotations.Observable
 
 @Observable
 @Accessors
@@ -29,7 +29,7 @@ class Libro extends Entity {
 		if (prestamos.isEmpty) {
 			return true
 		}
-		ultimoPrestamo?.estaDisponible
+		ultimoPrestamo.estaDisponible
 	}
 	
 	def getUltimoPrestamo() {

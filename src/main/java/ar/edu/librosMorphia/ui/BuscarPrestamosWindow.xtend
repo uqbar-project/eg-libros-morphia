@@ -69,7 +69,7 @@ class BuscarPrestamosWindow extends SimpleWindow<BuscarPrestamos> {
 	def void describeResultsGrid(Table<Prestamo> table) {
 		new Column<Prestamo>(table) => [
 			title = "Libro"
-			fixedSize = 150
+			fixedSize = 250
 			bindContentsToProperty("libro")
 		]
 

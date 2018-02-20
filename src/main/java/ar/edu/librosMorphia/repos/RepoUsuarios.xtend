@@ -2,7 +2,6 @@ package ar.edu.librosMorphia.repos
 
 import ar.edu.librosMorphia.domain.Usuario
 import org.apache.commons.collections15.Predicate
-import org.uqbar.commons.model.CollectionBasedRepo
 
 class RepoUsuarios extends AbstractRepository<Usuario> {
 	

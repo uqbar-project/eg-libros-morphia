@@ -7,7 +7,7 @@ abstract class AbstractRepository<T extends Entity> extends CollectionBasedRepo<
 	
 	def createIfNotExists(T example) {
 		val entidadAModificar = getByExample(example)
-		if (entidadAModificar != null) {
+		if (entidadAModificar !== null) {
 			return entidadAModificar
 		}
 		this.create(example)
