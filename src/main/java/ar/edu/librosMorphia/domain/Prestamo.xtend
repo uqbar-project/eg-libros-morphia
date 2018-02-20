@@ -4,11 +4,11 @@ import java.util.Date
 import org.bson.types.ObjectId
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.annotations.Embedded
-import org.mongodb.morphia.annotations.Id
-import org.uqbar.commons.model.UserException
-import org.uqbar.commons.utils.Observable
 import org.mongodb.morphia.annotations.Entity
+import org.mongodb.morphia.annotations.Id
 import org.mongodb.morphia.annotations.Property
+import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.exceptions.UserException
 
 @Observable
 @Accessors
@@ -40,14 +40,14 @@ class Prestamo {
 	}
 	
 	def estaPendiente() {
-		fechaDevolucion == null
+		fechaDevolucion === null
 	}
 	
 	def void validar() {
-		if (libro == null) {
+		if (libro === null) {
 			throw new UserException("Debe seleccionar el libro a prestar")
 		}
-		if (usuario == null) {
+		if (usuario === null) {
 			throw new UserException("Debe seleccionar a quién prestarle el libro")
 		}
 		if (!libro.estaDisponible) {

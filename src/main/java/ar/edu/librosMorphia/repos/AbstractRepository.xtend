@@ -15,11 +15,11 @@ abstract class AbstractRepository<T> {
 	static Morphia morphia
 
 	new() {
-		if (ds == null) {
+		if (ds === null) {
 			val mongo = new MongoClient("localhost", 27017)
 			morphia = new Morphia => [
 				map(typeof(Usuario)).map(typeof(Libro)).map(typeof(Prestamo))
-				ds = createDatastore(mongo, "local")
+				ds = createDatastore(mongo, "test")
 				ds.ensureIndexes
 			]
 			println("Conectado a MongoDB. Bases: " + ds.getDB.collectionNames)
@@ -39,7 +39,7 @@ abstract class AbstractRepository<T> {
 
 	def T createIfNotExists(T t) {
 		val entidadAModificar = getByExample(t)
-		if (entidadAModificar != null) {
+		if (entidadAModificar !== null) {
 			return entidadAModificar
 		}
 		create(t)

@@ -7,7 +7,7 @@ import ar.edu.librosMorphia.repos.RepoUsuarios
 import ar.edu.librosMorphia.ui.BuscarPrestamosWindow
 import org.uqbar.arena.Application
 import org.uqbar.arena.bootstrap.Bootstrap
-import org.uqbar.commons.utils.ApplicationContext
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 class LibrosApplication extends Application {
 	

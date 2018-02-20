@@ -8,7 +8,7 @@ import ar.edu.librosMorphia.repos.RepoLibros
 import ar.edu.librosMorphia.repos.RepoPrestamos
 import ar.edu.librosMorphia.repos.RepoUsuarios
 import org.uqbar.arena.bootstrap.Bootstrap
-import org.uqbar.commons.utils.ApplicationContext
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 class LibrosBootstrap implements Bootstrap {
 	AbstractRepository<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(typeof(RepoUsuarios))
