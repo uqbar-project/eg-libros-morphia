@@ -26,5 +26,7 @@ El proyecto base de Xtend está usando el framework [Morphia](http://mongodb.git
 
 **IMPORTANTE:** Usar la versión 1.2.1 o superior de Morphia ya que la anterior no se integra correctamente con Arena.
 
+## Diagrama general de la arquitectura
+
 ![image](images/Arquitectura.png)
 
