@@ -3,12 +3,12 @@ package ar.edu.librosMorphia.domain
 import java.util.Date
 import org.bson.types.ObjectId
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.mongodb.morphia.annotations.Embedded
-import org.mongodb.morphia.annotations.Entity
-import org.mongodb.morphia.annotations.Id
-import org.mongodb.morphia.annotations.Property
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
+import xyz.morphia.annotations.Embedded
+import xyz.morphia.annotations.Id
+import xyz.morphia.annotations.Entity
+import xyz.morphia.annotations.Property
 
 @Observable
 @Accessors

@@ -5,9 +5,9 @@ import ar.edu.librosMorphia.domain.Prestamo
 import ar.edu.librosMorphia.domain.Usuario
 import com.mongodb.MongoClient
 import java.util.List
-import org.mongodb.morphia.Datastore
-import org.mongodb.morphia.Morphia
-import org.mongodb.morphia.query.UpdateOperations
+import xyz.morphia.Datastore
+import xyz.morphia.Morphia
+import xyz.morphia.query.UpdateOperations
 
 abstract class AbstractRepository<T> {
 

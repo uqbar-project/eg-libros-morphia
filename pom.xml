@@ -1,9 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.uqbar</groupId>
-  <artifactId>libros-ui-arena-morphia</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.uqbar</groupId>
+	<artifactId>libros-ui-arena-morphia</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>arena-xtend-parent</artifactId>
@@ -14,12 +16,12 @@
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>3.6.3</version>
+			<version>3.9.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mongodb.morphia</groupId>
-			<artifactId>morphia</artifactId>
-			<version>1.3.2</version>
+			<groupId>xyz.morphia.morphia</groupId>
+			<artifactId>core</artifactId>
+			<version>1.4.0</version>
 		</dependency>
 	</dependencies>
 
@@ -37,5 +39,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
