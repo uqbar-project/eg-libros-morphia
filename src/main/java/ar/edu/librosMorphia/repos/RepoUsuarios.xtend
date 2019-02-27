@@ -9,15 +9,15 @@ class RepoUsuarios extends AbstractRepository<Usuario> {
 	}
 
 	override searchByExample(Usuario usuario) {
-		ds.createQuery(entityType)
-			.field("nombre").equal(usuario.nombre)
-			.asList
+//		ds.createQuery(entityType)
+//			.field("nombre").equal(usuario.nombre)
+//			.asList
 	}
 
 	override defineUpdateOperations(Usuario usuario) {
-		ds.createUpdateOperations(entityType)
-			.set("nombre", usuario.nombre)
-			.set("password", usuario.password)
+//		ds.createUpdateOperations(entityType)
+//			.set("nombre", usuario.nombre)
+//			.set("password", usuario.password)
 	}
 
 }

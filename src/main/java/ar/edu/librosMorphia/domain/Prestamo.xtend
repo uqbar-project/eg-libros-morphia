@@ -1,28 +1,24 @@
 package ar.edu.librosMorphia.domain
 
 import java.util.Date
-import org.bson.types.ObjectId
+
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.mongodb.morphia.annotations.Embedded
-import org.mongodb.morphia.annotations.Entity
-import org.mongodb.morphia.annotations.Id
-import org.mongodb.morphia.annotations.Property
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
 
 @Observable
 @Accessors
-@Entity(value="Prestamos", noClassnameStored=true)
+//@Entity(value="Prestamos", noClassnameStored=true)
 class Prestamo {
-	@Id ObjectId id
+	//@Id ObjectId id
 
-	@Embedded	
+	//@Embedded	
 	Usuario usuario
 	
-	@Embedded
+	//@Embedded
 	Libro libro
 	
-	@Property("fechaRetorno")
+	//@Property("fechaRetorno")
 	Date fechaDevolucion
 
 	new() {
