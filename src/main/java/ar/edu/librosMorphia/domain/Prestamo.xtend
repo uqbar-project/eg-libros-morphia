@@ -9,20 +9,23 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.hibernate.annotations.GenericGenerator
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
+import javax.persistence.ManyToOne
+import javax.persistence.FetchType
+import javax.persistence.CascadeType
 
 @Observable
 @Accessors
-@Entity()
+@Entity(name="Prestamos")
 class Prestamo {
 	@Id 
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")	
 	private String id
 
-	@Embedded	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	Usuario usuario
 	
-	@Embedded
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	Libro libro
 	
 	//@Property("fechaRetorno")

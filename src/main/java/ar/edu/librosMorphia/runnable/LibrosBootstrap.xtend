@@ -13,15 +13,15 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 class LibrosBootstrap implements Bootstrap {
 	AbstractRepository<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(typeof(RepoUsuarios))
 	AbstractRepository<Libro> repoLibros = ApplicationContext.instance.getSingleton(typeof(RepoLibros))
-	RepoPrestamos repoPrestamos = ApplicationContext.instance.getSingleton(typeof(RepoPrestamos)) as RepoPrestamos
+	AbstractRepository<Prestamo> repoPrestamos = ApplicationContext.instance.getSingleton(typeof(RepoPrestamos)) 
 
 	override isPending() {
 		true
 	}
 
 	override run() {
-		println("Cuenta:" + repoUsuarios.count)
-		if (repoUsuarios.count as Long !=0) {
+		println("Cuenta:" + repoPrestamos.count)
+		if (repoPrestamos.count as Long !=0) {
 			return
 		}
 		println("Creando juego de datos")
