@@ -101,7 +101,7 @@ abstract class AbstractRepository<T> {
 //		val query = criteria.createQuery as CriteriaQuery<T>
 //		val from = query.from(entityType)
 //		query.select(from)
-		entityManager.createNativeQuery("",entityType).resultList
+		entityManager.createNativeQuery("{}",entityType).resultList
 	}
 
 	abstract def Class<T> getEntityType()

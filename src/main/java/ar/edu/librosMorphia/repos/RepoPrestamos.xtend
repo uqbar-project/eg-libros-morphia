@@ -14,7 +14,7 @@ class RepoPrestamos extends AbstractRepository<Prestamo> {
 	}
 	
 	override getName() {
-		"Prestamo"
+		"Prestamos"
 	}
 	
 
