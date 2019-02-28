@@ -4,24 +4,15 @@ import ar.edu.librosMorphia.domain.Libro
 
 class RepoLibros extends AbstractRepository<Libro> {
 	
-	override searchByExample(Libro example) {
-//		ds.createQuery(entityType)
-//			.field("titulo").contains(example.titulo ?: "")
-//			.field("activo").equal(true)
-//			.field("estado").equal(example.estado ?: Libro.DISPONIBLE)
-//			.asList
+	override generateWhere(Libro example) {
+		"{ $and: [ { titulo : /" + example.titulo + "/ }, { activo :true },{ estado : '" + example.estado ?: Libro.DISPONIBLE + "' } ] }"
 	}
-	
 	override getEntityType() {
 		typeof(Libro)
 	}
 	
-	override defineUpdateOperations(Libro libro) {
-//		ds.createUpdateOperations(entityType)
-//			.set("titulo", libro.titulo)
-//			.set("autor", libro.autor)
-//			.set("activo", libro.activo)
-//			.set("estado", libro.estado)
+	override getName() {
+		"Libro"
 	}
 
 }

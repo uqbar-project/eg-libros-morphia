@@ -1,11 +1,18 @@
 package ar.edu.librosMorphia.repos
 
 import java.util.List
+import javax.persistence.EntityManager
+import javax.persistence.EntityManagerFactory
+import javax.persistence.Persistence
+import javax.persistence.PersistenceException
 
 abstract class AbstractRepository<T> {
 
 //	static protected Datastore ds
 //	static Morphia morphia
+	private static final EntityManagerFactory entityManagerFactory = Persistence.
+		createEntityManagerFactory("ogm-mongodb")
+	protected static EntityManager entityManager = entityManagerFactory.createEntityManager
 
 	new() {
 //		if (ds === null) {
@@ -27,8 +34,23 @@ abstract class AbstractRepository<T> {
 			return result.get(0)
 		}
 	}
-
-	def List<T> searchByExample(T t)
+	def count() {	
+	 entityManager.createNativeQuery( "db." + getName +".count({})" ).getSingleResult();
+	}
+	
+	def String getName()
+	
+	def List<T> searchByExample(T t){
+		//val criteria = entityManager.criteriaBuilder
+		//val query = criteria.createQuery as CriteriaQuery<T>
+		//val from = query.from(entityType)
+		//query.select(from)
+		//generateWhere(criteria, query, from, t)
+		//entityManager.createQuery(query).resultList
+		entityManager.createNativeQuery(generateWhere(t), entityType ).resultList
+	}
+	
+	def String generateWhere(T t)
 
 	def T createIfNotExists(T t) {
 		val entidadAModificar = getByExample(t)
@@ -39,22 +61,46 @@ abstract class AbstractRepository<T> {
 	}
 
 	def void update(T t) {
-		//ds.update(t, this.defineUpdateOperations(t))
+		try {
+			entityManager => [
+				transaction.begin
+				merge(t)
+				transaction.commit
+			]
+		} catch (PersistenceException e) {
+			e.printStackTrace
+			entityManager.transaction.rollback
+			throw new RuntimeException("Ha ocurrido un error. La operación no puede completarse.", e)
+		}
 	}
 
-	abstract def UpdateOperations<T> defineUpdateOperations(T t)
-
+	// abstract def UpdateOperations<T> defineUpdateOperations(T t)
 	def T create(T t) {
-//		ds.save(t)
-		t
+		
+			entityManager.persist(t)
+	t
 	}
 
 	def void delete(T t) {
-	//	ds.delete(t)
+		try {
+			entityManager => [
+				transaction.begin
+				delete(t)
+				transaction.commit
+			]
+		} catch (PersistenceException e) {
+			e.printStackTrace
+			entityManager.transaction.rollback
+			throw new RuntimeException("Ha ocurrido un error. La operación no puede completarse.", e)
+		}
 	}
 
 	def List<T> allInstances() {
-		//ds.createQuery(this.getEntityType()).asList
+//		val criteria = entityManager.criteriaBuilder
+//		val query = criteria.createQuery as CriteriaQuery<T>
+//		val from = query.from(entityType)
+//		query.select(from)
+		entityManager.createNativeQuery("",entityType).resultList
 	}
 
 	abstract def Class<T> getEntityType()

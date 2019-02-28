@@ -20,10 +20,11 @@ class LibrosBootstrap implements Bootstrap {
 	}
 
 	override run() {
-		if (!repoUsuarios.allInstances.isEmpty) {
+		println("Cuenta:" + repoUsuarios.count)
+		if (repoUsuarios.count as Long !=0) {
 			return
 		}
-		
+		println("Creando juego de datos")
 		var medina = new Usuario => [
 			nombre = "Medina"
 			password = "Piquito"
@@ -46,23 +47,23 @@ class LibrosBootstrap implements Bootstrap {
 			autor = "Tomás Eloy Martínez"
 		]
 
-		repoUsuarios.createIfNotExists(
+		repoUsuarios.create(
 			new Usuario => [
 				nombre = "Lampone"
 				password = "Betun"
 			])
 		medina = repoUsuarios.createIfNotExists(medina)
-		santos = repoUsuarios.createIfNotExists(santos)
+		santos = repoUsuarios.create(santos)
 
-		elAleph = repoLibros.createIfNotExists(elAleph)
-		noHabraMasPenas = repoLibros.createIfNotExists(noHabraMasPenas)
-		repoLibros.createIfNotExists(
+		elAleph = repoLibros.create(elAleph)
+		noHabraMasPenas = repoLibros.create(noHabraMasPenas)
+		repoLibros.create(
 			new Libro => [
 				titulo = "100 años de soledad"
 				autor = "Gabriel García Márquez"
 			])
-		novelaPeron = repoLibros.createIfNotExists(novelaPeron)
-		repoLibros.createIfNotExists(
+		novelaPeron = repoLibros.create(novelaPeron)
+		repoLibros.create(
 			new Libro => [
 				titulo = "¿Por quién doblan las campanas?"
 				autor = "Ernest Hemingway"
@@ -79,9 +80,9 @@ class LibrosBootstrap implements Bootstrap {
 		novelaPeron.prestar(novelaASantos)
 		repoLibros.update(novelaPeron)
 
-		repoPrestamos.createWhenNew(elAlephASantos)
-		repoPrestamos.createWhenNew(noHabraAMedina)
-		repoPrestamos.createWhenNew(novelaASantos)
+		repoPrestamos.create(elAlephASantos)
+		repoPrestamos.create(noHabraAMedina)
+		repoPrestamos.create(novelaASantos)
 	}
 
 }

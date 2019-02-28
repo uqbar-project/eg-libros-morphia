@@ -1,21 +1,28 @@
 package ar.edu.librosMorphia.domain
 
 import java.util.Date
-
+import javax.persistence.Embedded
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.hibernate.annotations.GenericGenerator
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
 
 @Observable
 @Accessors
-//@Entity(value="Prestamos", noClassnameStored=true)
+@Entity()
 class Prestamo {
-	//@Id ObjectId id
+	@Id 
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")	
+	private String id
 
-	//@Embedded	
+	@Embedded	
 	Usuario usuario
 	
-	//@Embedded
+	@Embedded
 	Libro libro
 	
 	//@Property("fechaRetorno")
