@@ -7,24 +7,9 @@ import javax.persistence.Persistence
 import javax.persistence.PersistenceException
 
 abstract class AbstractRepository<T> {
-
-//	static protected Datastore ds
-//	static Morphia morphia
 	private static final EntityManagerFactory entityManagerFactory = Persistence.
 		createEntityManagerFactory("ogm-mongodb")
 	protected static EntityManager entityManager = entityManagerFactory.createEntityManager
-
-	new() {
-//		if (ds === null) {
-//			val mongo = new MongoClient("localhost", 27017)
-//			morphia = new Morphia => [
-//				map(typeof(Usuario)).map(typeof(Libro)).map(typeof(Prestamo))
-//				ds = createDatastore(mongo, "test")
-//				ds.ensureIndexes
-//			]
-//			println("Conectado a MongoDB. Bases: " + ds.getDB.collectionNames)
-//		}
-	}
 
 	def T getByExample(T example) {
 		val result = searchByExample(example)
@@ -71,7 +56,6 @@ abstract class AbstractRepository<T> {
 		}
 	}
 
-	// abstract def UpdateOperations<T> defineUpdateOperations(T t)
 	def T create(T t) {
 			entityManager.getTransaction().begin()
 			entityManager.persist(t)
@@ -94,10 +78,6 @@ abstract class AbstractRepository<T> {
 	}
 
 	def List<T> allInstances() {
-//		val criteria = entityManager.criteriaBuilder
-//		val query = criteria.createQuery as CriteriaQuery<T>
-//		val from = query.from(entityType)
-//		query.select(from)
 		entityManager.createNativeQuery("{}",entityType).resultList
 	}
 

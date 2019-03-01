@@ -23,9 +23,7 @@ class LibrosBootstrap implements Bootstrap {
 		if (repoPrestamos.count !=0) {
 			return
 		}
-		println("----------------------")
 		println("Creando juego de datos")
-		println("----------------------")
 		
 		var medina = new Usuario => [
 			nombre = "Medina"

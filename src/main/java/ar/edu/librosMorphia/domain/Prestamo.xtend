@@ -27,7 +27,6 @@ class Prestamo {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	Libro libro
 	
-	//@Property("fechaRetorno")
 	Date fechaDevolucion
 
 	new() {
