@@ -9,12 +9,7 @@ class RepoUsuarios extends AbstractRepository<Usuario> {
 	}
 
 	override generateWhere(Usuario example) {
-		"{ $and: [ { nombre : '" + example.nombre + "' } ] }"
+		"{'nombre' : '" + example.nombre + "'}"
 	}
-	
-	override getName() {
-		"Usuario"
-	}
-
 
 }

@@ -34,19 +34,15 @@ abstract class AbstractRepository<T> {
 			return result.get(0)
 		}
 	}
-	def count() {	
-	 entityManager.createNativeQuery( "db." + getName +".count({})" ).getSingleResult();
+	def Long count() {	
+	 entityManager.createNativeQuery( "db." + name +".count({})" ).getSingleResult() as Long
 	}
 	
-	def String getName()
+	def String getName(){
+		entityType.name
+	}
 	
 	def List<T> searchByExample(T t){
-		//val criteria = entityManager.criteriaBuilder
-		//val query = criteria.createQuery as CriteriaQuery<T>
-		//val from = query.from(entityType)
-		//query.select(from)
-		//generateWhere(criteria, query, from, t)
-		//entityManager.createQuery(query).resultList
 		entityManager.createNativeQuery(generateWhere(t), entityType ).resultList
 	}
 	

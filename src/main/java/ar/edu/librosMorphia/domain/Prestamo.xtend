@@ -1,21 +1,20 @@
 package ar.edu.librosMorphia.domain
 
 import java.util.Date
-import javax.persistence.Embedded
+import javax.persistence.CascadeType
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.persistence.ManyToOne
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.hibernate.annotations.GenericGenerator
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
-import javax.persistence.ManyToOne
-import javax.persistence.FetchType
-import javax.persistence.CascadeType
 
 @Observable
 @Accessors
-@Entity(name="Prestamos")
+@Entity()
 class Prestamo {
 	@Id 
     @GeneratedValue(generator = "uuid")

@@ -11,7 +11,10 @@
 		<artifactId>arena-xtend-parent</artifactId>
 		<version>3.6.3</version>
 	</parent>
-
+	<properties>
+		<slf4j.version>1.6.1</slf4j.version>
+		<log4j.version>1.2.14</log4j.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate.ogm</groupId>
@@ -22,6 +25,41 @@
 			<groupId>org.jboss.narayana.jta</groupId>
 			<artifactId>narayana-jta</artifactId>
 			<version>5.9.3.Final</version>
+		</dependency>
+
+		<!-- Logger -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- The Simple Logging Facade for Java or (SLF4J) serves as a simple facade 
+			or abstraction for various logging frameworks, e.g. java.util.logging, log4j 
+			and logback, allowing the end user to plug in the desired logging framework 
+			at deployment time. -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 

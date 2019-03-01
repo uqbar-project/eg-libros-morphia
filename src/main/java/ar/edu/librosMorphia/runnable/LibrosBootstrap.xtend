@@ -20,8 +20,7 @@ class LibrosBootstrap implements Bootstrap {
 	}
 
 	override run() {
-		println("Cuenta:" + repoPrestamos.count)
-		if (repoPrestamos.count as Long !=0) {
+		if (repoPrestamos.count !=0) {
 			return
 		}
 		println("Creando juego de datos")

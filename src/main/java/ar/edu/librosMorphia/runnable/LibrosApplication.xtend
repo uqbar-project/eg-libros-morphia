@@ -10,20 +10,22 @@ import org.uqbar.arena.bootstrap.Bootstrap
 import org.uqbar.commons.applicationContext.ApplicationContext
 
 class LibrosApplication extends Application {
-	
+
 	new(Bootstrap bootstrap) {
 		super(bootstrap)
 	}
-	
+
 	static def void main(String[] args) {
+		
 		ApplicationContext.instance.configureSingleton(typeof(RepoUsuarios), new RepoUsuarios)
-		ApplicationContext.instance.configureSingleton(typeof(RepoLibros), new RepoLibros) 
+		ApplicationContext.instance.configureSingleton(typeof(RepoLibros), new RepoLibros)
 		ApplicationContext.instance.configureSingleton(typeof(RepoPrestamos), new RepoPrestamos)
+
 		new LibrosApplication(new LibrosBootstrap).start()
 	}
 
 	override createMainWindow() {
 		new BuscarPrestamosWindow(this, new BuscarPrestamos())
 	}
-	
+
 }

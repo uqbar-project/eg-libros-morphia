@@ -5,14 +5,13 @@ import ar.edu.librosMorphia.domain.Libro
 class RepoLibros extends AbstractRepository<Libro> {
 	
 	override generateWhere(Libro example) {
-		"{ $and: [ { titulo : /" + example.titulo + "/ }, { activo :true },{ estado : '" + example.estado ?: Libro.DISPONIBLE + "' } ] }"
+		var String titulo = ""
+		if (example.titulo !== null)
+			titulo = ",{ 'titulo' : {$regex : '.*" + example.titulo + ".*'} }"
+		"{ $and: [ { 'activo' :true },{ 'estado' : '" + (example.estado ?: Libro.DISPONIBLE) + "' }" + titulo + " ] }"
 	}
 	override getEntityType() {
 		typeof(Libro)
-	}
-	
-	override getName() {
-		"Libro"
 	}
 
 }
