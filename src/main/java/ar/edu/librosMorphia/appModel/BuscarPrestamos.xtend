@@ -26,7 +26,7 @@ class BuscarPrestamos {
 	}
 	
 	def buscar() {
-		prestamos = repoPrestamos.allInstances()
+		prestamos = repoPrestamos.searchByExample(new Prestamo)
 	}
 	
 	def devolver() {

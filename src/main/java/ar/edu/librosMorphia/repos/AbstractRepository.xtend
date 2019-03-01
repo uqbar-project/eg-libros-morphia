@@ -35,11 +35,12 @@ abstract class AbstractRepository<T> {
 		}
 	}
 	def Long count() {	
+	println("db." + name +".count({})")
 	 entityManager.createNativeQuery( "db." + name +".count({})" ).getSingleResult() as Long
 	}
 	
 	def String getName(){
-		entityType.name
+		entityType.simpleName
 	}
 	
 	def List<T> searchByExample(T t){

@@ -9,7 +9,12 @@ class RepoPrestamos extends AbstractRepository<Prestamo> {
 	}
 	
 	override generateWhere(Prestamo example) {
-		"{ $and: [ { 'libro.titulo' : '" + example.libro.titulo + "' }, { 'usuario.nombre' : '" + example.usuario.nombre + "' } ] }"
+		var filtros = ""
+		if (example.libro !== null)
+			filtros = filtros + ",{ 'libro.titulo' : '" + example.libro.titulo + "' } "
+		if (example.usuario !==null)
+			filtros = filtros + ", { 'usuario.nombre' : '" + example.usuario.nombre + "' }"
+		"{ $and: [{ 'fechaDevolucion': { $exists: false }}"+ filtros +"  ] }"
 	}
 	
 
