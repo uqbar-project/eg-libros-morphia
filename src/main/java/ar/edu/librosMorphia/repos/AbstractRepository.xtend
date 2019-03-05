@@ -12,12 +12,11 @@ import org.mongodb.morphia.query.UpdateOperations
 abstract class AbstractRepository<T> {
 
 	static protected Datastore ds
-	static Morphia morphia
 
 	new() {
 		if (ds === null) {
 			val mongo = new MongoClient("localhost", 27017)
-			morphia = new Morphia => [
+			new Morphia => [
 				map(typeof(Usuario)).map(typeof(Libro)).map(typeof(Prestamo))
 				ds = createDatastore(mongo, "test")
 				ds.ensureIndexes
