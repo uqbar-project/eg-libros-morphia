@@ -19,7 +19,7 @@ class Prestamo {
 	@Id 
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")	
-	private String id
+	String id
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	Usuario usuario

@@ -7,7 +7,7 @@ import javax.persistence.Persistence
 import javax.persistence.PersistenceException
 
 abstract class AbstractRepository<T> {
-	private static final EntityManagerFactory entityManagerFactory = Persistence.
+	static final EntityManagerFactory entityManagerFactory = Persistence.
 		createEntityManagerFactory("ogm-mongodb")
 	protected static EntityManager entityManager = entityManagerFactory.createEntityManager
 

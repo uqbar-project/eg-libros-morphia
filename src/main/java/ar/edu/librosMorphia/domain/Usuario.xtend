@@ -16,7 +16,7 @@ class Usuario {
 	@Id
 	@GeneratedValue(generator="uuid")
 	@GenericGenerator(name="uuid", strategy="uuid2")
-	private String id
+	String id
 
 	String nombre
 	String password

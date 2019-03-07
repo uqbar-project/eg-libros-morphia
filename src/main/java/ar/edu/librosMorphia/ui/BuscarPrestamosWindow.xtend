@@ -21,7 +21,7 @@ class BuscarPrestamosWindow extends SimpleWindow<BuscarPrestamos> {
 		super(parent, model)
 	}
 
-	override def createMainTemplate(Panel mainPanel) {
+	override createMainTemplate(Panel mainPanel) {
 		title = "Préstamo de libros"
 		taskDescription = "Estos son los préstamos pendientes"
 

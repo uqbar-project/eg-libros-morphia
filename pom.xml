@@ -11,6 +11,21 @@
 		<artifactId>arena-xtend-parent</artifactId>
 		<version>3.6.3</version>
 	</parent>
+
+	<repositories>
+		<repository>
+			<id>uqbar-wiki.org-releases</id>
+			<name>uqbar-wiki.org-releases</name>
+			<url>http://maven.uqbar.org/releases</url>
+		</repository>
+		<repository>
+			<snapshots />
+			<id>uqbar-wiki.org-snapshots</id>
+			<name>uqbar-wiki.org-snapshots</name>
+			<url>http://maven.uqbar.org/snapshots</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<slf4j.version>1.6.1</slf4j.version>
 		<log4j.version>1.2.14</log4j.version>
