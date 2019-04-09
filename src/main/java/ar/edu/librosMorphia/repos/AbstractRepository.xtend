@@ -4,6 +4,7 @@ import ar.edu.librosMorphia.domain.Libro
 import ar.edu.librosMorphia.domain.Prestamo
 import ar.edu.librosMorphia.domain.Usuario
 import com.mongodb.MongoClient
+import com.mongodb.ServerAddress
 import java.util.List
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
@@ -15,7 +16,11 @@ abstract class AbstractRepository<T> {
 
 	new() {
 		if (ds === null) {
-			val mongo = new MongoClient("localhost", 27017)
+			//val mongo = new MongoClient("localhost", 27058)
+			val mongo = new MongoClient(#[new ServerAddress("localhost", 27058),
+					new ServerAddress("localhost", 27059),
+					new ServerAddress("localhost", 27060)])
+					
 			new Morphia => [
 				map(typeof(Usuario)).map(typeof(Libro)).map(typeof(Prestamo))
 				ds = createDatastore(mongo, "test")
