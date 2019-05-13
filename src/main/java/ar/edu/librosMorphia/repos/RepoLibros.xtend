@@ -13,7 +13,7 @@ class RepoLibros extends AbstractRepository<Libro> {
 	}
 	
 	override getEntityType() {
-		typeof(Libro)
+		Libro
 	}
 	
 	override defineUpdateOperations(Libro libro) {

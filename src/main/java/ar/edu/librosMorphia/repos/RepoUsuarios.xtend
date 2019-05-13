@@ -5,7 +5,7 @@ import ar.edu.librosMorphia.domain.Usuario
 class RepoUsuarios extends AbstractRepository<Usuario> {
 
 	override getEntityType() {
-		typeof(Usuario)
+		Usuario
 	}
 
 	override searchByExample(Usuario usuario) {

@@ -50,7 +50,7 @@ class BuscarPrestamosWindow extends SimpleWindow<BuscarPrestamos> {
 	 * dispara la notificación a la grilla que funciona como Observer
 	 */
 	def protected createResultsGrid(Panel mainPanel) {
-		var table = new Table<Prestamo>(mainPanel, typeof(Prestamo)) => [
+		var table = new Table<Prestamo>(mainPanel, Prestamo) => [
 			numberVisibleRows = 10
 			width = 650
 			items <=> "prestamos"
