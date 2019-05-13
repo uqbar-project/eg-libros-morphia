@@ -24,7 +24,7 @@ $ sudo service mongod start
 
 El proyecto base de Xtend está usando el framework [Morphia](http://mongodb.github.io/morphia/) que es un OD/M (Object Document Mapper) contra MongoDB.
 
-**IMPORTANTE:** Usar la versión 1.2.1 o superior de Morphia ya que la anterior no se integra correctamente con Arena.
+**IMPORTANTE:** Usar la versión 1.2.1 ó superior de Morphia ya que la anterior no se integra correctamente con Arena.
 
 ## Diagrama general de la arquitectura
 
