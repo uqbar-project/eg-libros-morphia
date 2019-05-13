@@ -16,7 +16,9 @@ abstract class AbstractRepository<T> {
 
 	new() {
 		if (ds === null) {
-			val mongo = new MongoClient("localhost", 27058)
+			// Conexión al puerto default de mongo
+			val mongo = new MongoClient("localhost", 27017)
+			// Conexión a un ReplicaSet con 1 master y 2 slave
 //			val mongo = new MongoClient(#[new ServerAddress("localhost", 27058),
 //					new ServerAddress("localhost", 27059),
 //					new ServerAddress("localhost", 27060)])
