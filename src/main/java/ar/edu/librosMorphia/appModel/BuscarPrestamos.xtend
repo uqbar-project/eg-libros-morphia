@@ -18,8 +18,8 @@ class BuscarPrestamos {
 	List<Prestamo> prestamos
 	Prestamo prestamoSeleccionado
 	
-	AbstractRepository<Prestamo> repoPrestamos = ApplicationContext.instance.getSingleton(typeof(RepoPrestamos))
-	AbstractRepository<Libro> repoLibros = ApplicationContext.instance.getSingleton(typeof(RepoLibros))
+	AbstractRepository<Prestamo> repoPrestamos = ApplicationContext.instance.getSingleton(RepoPrestamos)
+	AbstractRepository<Libro> repoLibros = ApplicationContext.instance.getSingleton(RepoLibros)
 	
 	new() {
 		buscar()

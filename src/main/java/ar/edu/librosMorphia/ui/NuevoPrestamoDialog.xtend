@@ -50,7 +50,7 @@ class NuevoPrestamoDialog extends Dialog<NuevoPrestamo> {
 			onClick [ | modelObject.buscarLibros ]
 		]
 		
-		val table = new Table<Libro>(panelLibro, typeof(Libro)) => [
+		val table = new Table<Libro>(panelLibro, Libro) => [
 			numberVisibleRows = 10
 			width = 650
 			items <=> "libros"

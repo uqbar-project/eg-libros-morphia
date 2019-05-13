@@ -16,9 +16,9 @@ class LibrosApplication extends Application {
 	}
 	
 	static def void main(String[] args) {
-		ApplicationContext.instance.configureSingleton(typeof(RepoUsuarios), new RepoUsuarios)
-		ApplicationContext.instance.configureSingleton(typeof(RepoLibros), new RepoLibros) 
-		ApplicationContext.instance.configureSingleton(typeof(RepoPrestamos), new RepoPrestamos)
+		ApplicationContext.instance.configureSingleton(RepoUsuarios, new RepoUsuarios)
+		ApplicationContext.instance.configureSingleton(RepoLibros, new RepoLibros) 
+		ApplicationContext.instance.configureSingleton(RepoPrestamos, new RepoPrestamos)
 		new LibrosApplication(new LibrosBootstrap).start()
 	}
 

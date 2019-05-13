@@ -5,7 +5,7 @@ import ar.edu.librosMorphia.domain.Prestamo
 class RepoPrestamos extends AbstractRepository<Prestamo> {
 	
 	override getEntityType() {
-		typeof(Prestamo)
+		Prestamo
 	}
 	
 	def createWhenNew(Prestamo prestamo) {

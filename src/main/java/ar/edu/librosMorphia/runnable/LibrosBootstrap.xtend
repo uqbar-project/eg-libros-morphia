@@ -11,9 +11,9 @@ import org.uqbar.arena.bootstrap.Bootstrap
 import org.uqbar.commons.applicationContext.ApplicationContext
 
 class LibrosBootstrap implements Bootstrap {
-	AbstractRepository<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(typeof(RepoUsuarios))
-	AbstractRepository<Libro> repoLibros = ApplicationContext.instance.getSingleton(typeof(RepoLibros))
-	RepoPrestamos repoPrestamos = ApplicationContext.instance.getSingleton(typeof(RepoPrestamos)) as RepoPrestamos
+	AbstractRepository<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(RepoUsuarios)
+	AbstractRepository<Libro> repoLibros = ApplicationContext.instance.getSingleton(RepoLibros)
+	RepoPrestamos repoPrestamos = ApplicationContext.instance.getSingleton(RepoPrestamos) as RepoPrestamos
 
 	override isPending() {
 		true

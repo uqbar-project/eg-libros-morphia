@@ -22,9 +22,9 @@ class NuevoPrestamo {
 	List<Libro> libros
 	Libro libroSeleccionado
 	
-	AbstractRepository<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(typeof(RepoUsuarios))
-	AbstractRepository<Libro> repoLibros = ApplicationContext.instance.getSingleton(typeof(RepoLibros))
-	AbstractRepository<Prestamo> repoPrestamos = ApplicationContext.instance.getSingleton(typeof(RepoPrestamos))
+	AbstractRepository<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(RepoUsuarios)
+	AbstractRepository<Libro> repoLibros = ApplicationContext.instance.getSingleton(RepoLibros)
+	AbstractRepository<Prestamo> repoPrestamos = ApplicationContext.instance.getSingleton(RepoPrestamos)
 
 	new() {
 		usuarios = repoUsuarios.allInstances
