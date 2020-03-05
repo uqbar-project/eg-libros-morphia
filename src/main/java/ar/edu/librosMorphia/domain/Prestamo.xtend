@@ -25,15 +25,6 @@ class Prestamo {
 	@Property("fechaRetorno")
 	Date fechaDevolucion
 
-	new() {
-		
-	}
-	
-	new(Libro _libro, Usuario _usuario) {
-		libro = _libro
-		usuario = _usuario
-	}
-	
 	def devolver() {
 		fechaDevolucion = new Date
 		libro.devolver

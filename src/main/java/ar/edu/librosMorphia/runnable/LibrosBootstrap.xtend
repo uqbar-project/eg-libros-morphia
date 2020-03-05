@@ -68,20 +68,27 @@ class LibrosBootstrap implements Bootstrap {
 				autor = "Ernest Hemingway"
 			])
 
-		var elAlephASantos = new Prestamo(elAleph, santos)
+		val elAlephASantos = crearPrestamo(elAleph, santos)
 		elAleph.prestar(elAlephASantos)
 		repoLibros.update(elAleph)
-		var noHabraAMedina = new Prestamo(noHabraMasPenas, medina)
+		repoPrestamos.createWhenNew(elAlephASantos)
+		
+		val noHabraAMedina = crearPrestamo(noHabraMasPenas, medina)
 		noHabraMasPenas.prestar(noHabraAMedina)
 		repoLibros.update(noHabraMasPenas)
+		repoPrestamos.createWhenNew(noHabraAMedina)
 		
-		var novelaASantos = new Prestamo(novelaPeron, santos)
+		val novelaASantos = crearPrestamo(novelaPeron, santos)
 		novelaPeron.prestar(novelaASantos)
 		repoLibros.update(novelaPeron)
-
-		repoPrestamos.createWhenNew(elAlephASantos)
-		repoPrestamos.createWhenNew(noHabraAMedina)
 		repoPrestamos.createWhenNew(novelaASantos)
+	}
+	
+	def crearPrestamo(Libro _libro, Usuario _usuario) {
+		return new Prestamo => [
+			libro = _libro
+			usuario = _usuario
+		]
 	}
 
 }
